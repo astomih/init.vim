@@ -1,6 +1,5 @@
 set number
 set imdisable
-set shell=pwsh.exe
 set splitbelow
 set mouse=a
 set clipboard=unnamed,unnamedplus
@@ -11,6 +10,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
+if has('win32')
+set shell=pwsh.exe
+set shellcmdflag=/c\ pwsh.exe\ -ExecutionPolicy\ RemoteSigned\ -c
+endif
+
 
 " IME OFF
 if executable('zenhan')
@@ -66,9 +70,5 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_theme = 'luna'
 
-
-
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
-
-
