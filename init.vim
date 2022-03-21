@@ -4,15 +4,15 @@ set splitbelow
 set mouse=a
 set clipboard=unnamed,unnamedplus
 set cursorline
-highlight lineNr ctermfg=300  
+set termguicolors
 tnoremap <Esc> <C-\><C-n>
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 if has('win32')
-set shell=pwsh.exe
-set shellcmdflag=/c\ pwsh.exe\ -ExecutionPolicy\ RemoteSigned\ -c
+"set shell=pwsh.exe
+"set shellcmdflag=/c\ pwsh.exe\ -ExecutionPolicy\ RemoteSigned\ -c
 endif
 
 
@@ -22,9 +22,6 @@ autocmd InsertLeave * :call system('zenhan 0')
 autocmd CmdlineLeave * :call system('zenhan 0')
 endif
 
-if exists('g:nvui')
-  set guifont=CaskaydiaCove\ Nerd\ Font:h16
-endif
 
 call plug#begin('~/.vim/plugged')
 "LSP周り
@@ -48,10 +45,12 @@ Plug 'ryanoasis/vim-devicons'
 "git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+"ユーティリティ
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 if has("win64")
-nnoremap <C-t> :12split <bar> :term<CR>
+nnoremap <C-t> :12split <bar> :term pwsh<CR>
 endif
 if has("unix")
 nnoremap <C-t> :12split|:term<CR>
